@@ -1,7 +1,11 @@
 #!/bin/sh
 
-# 1 = TV shows / 2 = Movies
-content=2
+if [[ $1 = "" ]]
+ then
+ echo "1 to update TV shows. 2 to update Movies"
+ exit
+fi
+content=$1
 
 #Database creds
 user=kodi
@@ -51,7 +55,7 @@ if [ $content = 1 ]
   while [ $LowerInt -le $UpperInt ]
   do
     jsonReq=$(GenerateTVJsonData $LowerInt)
-    curl -v POST -H 'Content-Type:application/json' -u $UserPassword $hostKodi -d "$jsonReq"
+    curl -X POST -H 'Content-Type:application/json' $hostKodi -u $UserPassword -d "$jsonReq"
     echo " "
     echo "Updating TV record" $LowerInt "of" $UpperInt
     echo " "
@@ -63,7 +67,7 @@ if [ $content = 1 ]
   while [ $LowerInt -le $UpperInt ]
   do
     jsonReq=$(GenerateMovieJsonData $LowerInt)
-    curl -v POST -H 'Content-Type:application/json' -u $UserPassword $hostKodi -d "$jsonReq"
+    curl -X POST -H 'Content-Type:application/json' $hostKodi -u $UserPassword -d "$jsonReq"
     echo " "
     echo "Updating movie record" $LowerInt "of" $UpperInt
     echo " "
