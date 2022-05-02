@@ -16,7 +16,7 @@ hostMysql=192.168.0.107
 database=MyVideos116
 
 #kodi URL and creds
-UserPassword='kodi:TheFlyingFish'
+UserPassword='kodi:password'
 hostKodi=http://rpi4:8080/jsonrpc
 
 GenerateTVJsonData()

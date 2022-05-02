@@ -1,6 +1,6 @@
 #!/bin/sh
 
-UserPassword="kodi:TheFlyingFish"
+UserPassword="kodi:password"
 Host=http://192.168.1.2:2020/jsonrpc
 
 GenerateJsonData()
