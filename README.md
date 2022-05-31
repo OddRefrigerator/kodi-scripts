@@ -8,7 +8,7 @@ send test toast pop up to kodi via rpc
 Refresh TV series and movies in shared mysql library via rpc call.
 
 ### manage-kodi.sh
-Script to prefrom multiple operations.
+Script to perform multiple operations.
 - export the library.
 - update the library.
 - get a list of movies including ID
