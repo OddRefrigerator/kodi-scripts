@@ -1,8 +1,8 @@
 #!/bin/sh
 #kodi URL and creds
-UserPassword='kodi:TheFlyingFish'
-hostKodi=http://192.168.0.104:8181/jsonrpc
-LowerInt=1
+UserPassword='kodi:Password'
+hostKodi=http://192.168.2.79:8181/jsonrpc
+LowerInt=400
 
 GenerateMovieJsonData()
 {
@@ -19,12 +19,12 @@ GenerateMovieJsonData()
 EOF
 }
 
-while [ $LowerInt -le 100 ]
+while [ $LowerInt -le 600 ]
   do
     jsonReq=$(GenerateMovieJsonData $LowerInt)
-    curl -vvv -X POST -H 'Content-Type:application/json' $hostKodi -u $UserPassword -d "$jsonReq"
-    echo " "
     echo "Updating movie record" $LowerInt
+    echo " "
+    curl -X POST -H 'Content-Type:application/json' $hostKodi -u $UserPassword -d "$jsonReq"
     echo " "
     ((LowerInt=LowerInt+1))
 done
