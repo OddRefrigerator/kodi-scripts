@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+
 #kodi URL and creds
-UserPassword='kodi:Password'
+UserPassword='kodi:password'
 hostKodi=http://192.168.2.79:8181/jsonrpc
-LowerInt=400
+LowerInt=270
 
 GenerateMovieJsonData()
 {
@@ -19,7 +20,7 @@ GenerateMovieJsonData()
 EOF
 }
 
-while [ $LowerInt -le 600 ]
+while [ $LowerInt -le 350 ]
   do
     jsonReq=$(GenerateMovieJsonData $LowerInt)
     echo "Updating movie record" $LowerInt

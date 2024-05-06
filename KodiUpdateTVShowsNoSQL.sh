@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+
 #kodi URL and creds
-UserPassword='kodi:Password'
+UserPassword='kodi:password'
 hostKodi=http://192.168.2.79:8181/jsonrpc
-LowerInt=230
+LowerInt=10
 
 GenerateTVJsonData()
 {
@@ -20,7 +21,7 @@ GenerateTVJsonData()
 EOF
 }
 
-while [ $LowerInt -le 350 ]
+while [ $LowerInt -le 150 ]
   do
     jsonReq=$(GenerateTVJsonData $LowerInt)
     echo "Updating TV record" $LowerInt

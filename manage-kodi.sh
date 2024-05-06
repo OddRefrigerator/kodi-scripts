@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 #kodi URL and creds
-UserPassword='kodi:TheFlyingFish'
-hostKodi=http://192.168.1.101:8080/jsonrpc
+UserPassword='kodi:password'
+hostKodi=http://192.168.2.79:8181/jsonrpc
 
 ExportLibraryJsonData()
 {

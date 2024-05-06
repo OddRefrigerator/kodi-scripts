@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 #kodi URL and creds
 UserPassword='kodi:password'
-hostKodi=http://192.168.1.6:8080/jsonrpc
+hostKodi=http://192.168.2.79:8181/jsonrpc
 
 ExportLibrary()
 {
@@ -13,8 +13,8 @@ ExportLibrary()
     "params": {
         "options": {
             "overwrite": true,
-            "actorthumbs": true,
-            "images": true
+            "actorthumbs": false,
+            "images": false
         }
     },
     "id": 1

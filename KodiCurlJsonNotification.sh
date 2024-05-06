@@ -1,7 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-UserPassword="kodi:password"
-Host=http://192.168.1.2:2020/jsonrpc
+#kodi URL and creds
+UserPassword='kodi:password'
+hostKodi=http://192.168.2.79:8181/jsonrpc
 
 GenerateJsonData()
 {

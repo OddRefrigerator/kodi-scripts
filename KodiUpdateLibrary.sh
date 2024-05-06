@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ $1 = "" ]]
  then
@@ -11,7 +11,7 @@ content=$1
 
 #Database creds
 user=kodi
-password=TheFlyingFish
+password=password
 hostMysql=192.168.0.107
 database=MyVideos116
 
