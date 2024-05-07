@@ -39,19 +39,13 @@ fi
 kodi_url=$(kodi_connect_url "$kodi_ip" "$kodi_port")
 auth_header=$(kodi_auth_header "$kodi_username" "$kodi_password")
 
-# Function to build the JSON request GetMovies
-GetMovies() {
-  echo '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": {}, "id": 1}'
-}
-
-# Function to build the JSON request RefreshMovie
-RefreshMovie() {
-  local movie_id="$1"
-  echo '{"jsonrpc": "2.0", "method": "VideoLibrary.RefreshMovie", "params": {"movieid": '$movie_id', "ignorenfo": true}, "id": 1}'
+ShowNotification()
+{
+  echo '{"jsonrpc": "2.0", "method": "GUI.ShowNotification", "params":{ "title": "test1", "message": "Test message using curl and json"}, "id": 1}'
 }
 
 # Get the JSON request
-json_req=$(GetMovies)
+json_req=$(ShowNotification)
 
 # Send request using curl and capture the response
 response=$(curl -X POST -s -H 'Content-Type: application/json' -H "$auth_header" "$kodi_url" -d "$json_req")
@@ -62,33 +56,4 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# Parse the response using jq
-# Extract movie IDs using error handling (assuming jq might fail)
-movie_ids=$(echo "$response" | jq -r '.result.movies[].movieid' || true)
-if [ $? -eq 0 ]; then
-  echo "Movie IDs retrieved successfully."
-else
-  echo "Error: Unable to parse movie IDs from response."
-fi
-
-# Declare an empty array to store movie IDs
-declare -a movie_id_array
-
-# Loop through each movie ID and add it to the array
-for movie_id in $movie_ids; do
-  movie_id_array+=("$movie_id")
-done
-
-# Print the lower and upper IDs
-echo "The lower ID is: ${movie_id_array[0]}"
-echo "The upper ID is: ${movie_id_array[${#movie_id_array[@]} - 1]}"
-echo "Refreshing movies"
-
-for movie_id in "${movie_id_array[@]}" 
-do
-    json_req=$(RefreshMovie $movie_id)
-    echo "Refreshing movie record" $movie_id
-    curl -X POST -s -H 'Content-Type: application/json' -H "$auth_header" "$kodi_url" -d "$json_req"
-    echo " "
-    echo " "
-done
+echo $response
